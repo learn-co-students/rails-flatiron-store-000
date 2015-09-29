@@ -24,7 +24,6 @@ RSpec.describe Cart, :type => :model do
   it 'consolidates multiple same line_items in add_item method' do 
     @line_item2 = Cart.first.add_item(@item.id)
     @line_item2.save
-    # binding.pry
     expect(Cart.first.line_items.first.quantity).to eq(2)
   end
 end

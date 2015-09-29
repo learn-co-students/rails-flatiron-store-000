@@ -11,16 +11,13 @@ class Cart < ActiveRecord::Base
   end
 
   def add_item(item_id)
-    # binding.pry
     line_items.each do |li|
-      # binding.pry
-      if item_id == li.item_id
+      if item_id.to_i == li.item_id
         new_quantity = li.quantity + 1
         li.destroy
-        # binding.pry
-        return LineItem.create(cart_id: id, item_id: item_id, quantity: new_quantity)
+        return line_items.build(cart_id: id, item_id: item_id.to_i, quantity: new_quantity)
       end
     end
-    LineItem.create(cart_id: id, item_id: item_id)
+    line_items.build(cart_id: id, item_id: item_id)
   end
 end
