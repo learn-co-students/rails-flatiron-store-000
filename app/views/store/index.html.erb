@@ -1,7 +1,14 @@
+
 <% @categories.each do |category| %>
   <%= link_to category.title, category_path(category) %>
 <% end %>
 
+<%if session[:cart_id] != nil%>
+<%= button_to 'Checkout', checkout_path(session[:cart_id]) %>
+<%end%>
+
 <% @items.each do |item| %>
   <p><%= item.title %> | <%= number_to_currency(item.price) %> | <%= button_to 'Add to Cart', line_items_path(item_id: item) %></p>
 <% end %>
+
+
