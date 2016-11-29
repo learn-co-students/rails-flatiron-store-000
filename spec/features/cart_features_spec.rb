@@ -27,6 +27,8 @@ describe 'Feature Test: Cart Session', :type => :feature do
   end
 
   it 'adds multiple quantities of the same item to the cart' do
+    first('.button_to').click_on("Checkout")
+    visit "/"
     first('.button_to').click_on("Add to Cart")
     expect(@cart.line_items.count).to eq(1)
     expect(@cart.line_items.first.quantity).to eq(2)
